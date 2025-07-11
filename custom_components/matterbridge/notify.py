@@ -3,7 +3,7 @@ import voluptuous as vol
 import requests
 import homeassistant.helpers.config_validation as cv
 from homeassistant.components.notify import (
-    ATTR_TARGET, ATTR_TITLE, PLATFORM_SCHEMA, BaseNotificationService)
+    ATTR_TARGET, PLATFORM_SCHEMA, BaseNotificationService)
 
 CONF_URL = 'url'
 CONFIG_NICKNAME = 'nickname'
@@ -30,12 +30,11 @@ class MatterNotificationService(BaseNotificationService):
         self.token = token
         
     def send_message(self, message="", **kwargs):
-        title = kwargs.get(ATTR_TITLE)
         gateway = kwargs.get(ATTR_TARGET)
         
         data = {
             
-            "text": "*" + title + "* \n" + message,
+            "text": message,
             "gateway": str(gateway[0]),
             "username": self.nickname
         }
