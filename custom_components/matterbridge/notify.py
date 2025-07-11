@@ -33,7 +33,6 @@ class MatterNotificationService(BaseNotificationService):
         gateway = kwargs.get(ATTR_TARGET)
         
         data = {
-            
             "text": message,
             "gateway": str(gateway[0]),
             "username": self.nickname
